@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>High-Low Game</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER & BALANCE -->
+    <header class="header">
+      <h1>High-Low Game</h1>
+      <div class="balance-display">
+        Balance: <span id="balanceAmount">100</span> Chips
+      </div>
+    </header>
+
+    <!-- MENU-BEREICH -->
+    <nav class="menu">
+      <button id="hlMenuBtn" class="menu-btn">High-Low</button>
+      <!-- Weitere Menü-Punkte hier (falls gewünscht) -->
+    </nav>
+
+    <!-- HIGH-LOW SPIELBEREICH -->
+    <section id="hlSection" class="hidden">
+      <!-- BET-OPTIONEN -->
+      <div id="hlBetArea">
+        <p class="section-title">Place Your Bet</p>
+        <div class="bet-options" id="hlBetOptions">
+          <button class="bet-btn" data-bet="1">1</button>
+          <button class="bet-btn" data-bet="2">2</button>
+          <button class="bet-btn" data-bet="4">4</button>
+          <button class="bet-btn" data-bet="8">8</button>
+          <button class="bet-btn" data-bet="custom">Custom</button>
+        </div>
+        <p class="selected-display">
+          Bet: <span id="hlSelectedBet">0</span> Chips
+        </p>
+        <button id="hlStartBtn" class="action-btn" disabled>Start</button>
+        <p class="hint">Need ≥ 4 correct to Cash Out.</p>
+      </div>
+
+      <!-- IN-GAME-BEREICH -->
+      <div id="hlGameArea" class="hidden">
+        <p>Number: <span id="hlCurrentNumber" class="large-number">–</span></p>
+        <div class="btn-group">
+          <button id="hlHigherBtn" class="sub-btn">Higher</button>
+          <button id="hlLowerBtn"  class="sub-btn">Lower</button>
+        </div>
+        <p>Streak: <span id="hlStreak">0</span> × (<span id="hlMultiplier">0</span>×)</p>
+        <p>Payout: <span id="hlPotentialPayout">0</span> Chips</p>
+        <button id="hlCashoutBtn" class="action-btn" disabled>Cash Out</button>
+      </div>
+
+      <!-- ERGEBNIS-BEREICH -->
+      <div id="hlResultArea" class="result-box hidden">
+        <p id="hlResultMessage" class="result-message"></p>
+        <div class="result-buttons">
+          <button id="hlRepeatBtn" class="sub-btn">Repeat</button>
+          <button id="hlDoubleBtn" class="sub-btn">Double</button>
+        </div>
+        <button id="hlNewBtn" class="action-btn">Play Again</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
