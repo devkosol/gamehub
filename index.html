@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌟 Ultimate Casino Hub</title>
+
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Haupt‐CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- (Optional) Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <!-- Audio Elements (Optional) -->
+  <audio id="soundClick" src="audio/click.mp3" preload="auto"></audio>
+  <audio id="soundWin"   src="audio/win.mp3"   preload="auto"></audio>
+  <audio id="soundLose"  src="audio/lose.mp3"  preload="auto"></audio>
+
+  <div class="wrapper">
+
+    <!-- HEADER & BALANCE -->
+    <header class="header">
+      <h1 class="logo">🌟 Ultimate Casino Hub</h1>
+      <div id="balanceDisplay" class="balance">
+        Balance: <span id="balanceAmount">1000</span> Chips
+      </div>
+    </header>
+
+    <!-- MAIN MENU -->
+    <section id="mainMenu" class="menu-section">
+      <h2 class="menu-title">Choose Your Game</h2>
+      <div class="menu-buttons">
+        <button id="btnDiceMenu" class="menu-btn">🎲 Dice</button>
+        <button id="btnHLMenu"   class="menu-btn">🔢 High-Low</button>
+        <button id="btnSlotMenu" class="menu-btn">🎰 Slot</button>
+        <button id="btnCoinMenu" class="menu-btn">🪙 Coin Flip</button>
+      </div>
+    </section>
+
+    <!-- DICE GAME SECTION -->
+    <section id="diceGame" class="game-section hidden">
+      <div class="game-card">
+        <h2 class="game-title">🎲 Dice Game</h2>
+        <!-- Odds Slider -->
+        <div class="config-row">
+          <label for="diceOdds">Win Chance (roll ≥ 4):</label>
+          <input type="range" id="diceOdds" min="0" max="100" value="50">
+          <span id="diceOddsDisplay">50%</span>
+        </div>
+        <!-- Bet Auswahl -->
+        <div class="bet-section">
+          <p>Select Your Bet</p>
+          <div class="bet-options" id="diceBetOptions">
+            <button class="bet-btn" data-bet="1">1</button>
+            <button class="bet-btn" data-bet="2">2</button>
+            <button class="bet-btn" data-bet="4">4</button>
+            <button class="bet-btn" data-bet="8">8</button>
+            <button class="bet-btn" data-bet="custom">Custom</button>
+          </div>
+          <p class="selected-display">
+            Bet: <span id="diceSelectedBet">0</span> Chips
+          </p>
+        </div>
+        <!-- Roll Button -->
+        <button id="diceRollBtn" class="action-btn" disabled>Roll Dice</button>
+        <!-- Ergebnis-Anzeige -->
+        <div id="diceResult" class="result-box hidden">
+          <div class="dice-output">
+            <div class="dice-container">
+              <p>You</p>
+              <div id="diceYourValue" class="dice-face">–</div>
+            </div>
+            <div class="dice-container">
+              <p>Bank</p>
+              <div id="diceBankValue" class="dice-face">–</div>
+            </div>
+          </div>
+          <p id="diceResultMessage" class="result-message"></p>
+          <div class="result-buttons">
+            <button id="diceRepeatBtn" class="sub-btn">Repeat</button>
+            <button id="diceDoubleBtn" class="sub-btn">Double</button>
+          </div>
+        </div>
+        <button id="diceBackBtn" class="back-btn">← Back to Menu</button>
+      </div>
+    </section>
+
+    <!-- HIGH-LOW GAME SECTION -->
+    <section id="hlGame" class="game-section hidden">
+      <div class="game-card">
+        <h2 class="game-title">🔢 High-Low</h2>
+        <!-- Lobby: Bet Selection -->
+        <div id="hlLobby" class="bet-section">
+          <p>Balance: <span id="hlBalance">1000</span> Chips</p>
+          <p>Select Your Bet</p>
+          <div class="bet-options" id="hlBetOptions">
+            <button class="bet-btn" data-bet="1">1</button>
+            <button class="bet-btn" data-bet="2">2</button>
+            <button class="bet-btn" data-bet="4">4</button>
+            <button class="bet-btn" data-bet="8">8</button>
+            <button class="bet-btn" data-bet="custom">Custom</button>
+          </div>
+          <p class="selected-display">
+            Bet: <span id="hlSelectedBet">0</span> Chips
+          </p>
+          <button id="hlStartBtn" class="action-btn" disabled>Start</button>
+          <p class="hint">Need ≥ 4 correct to Cash Out.</p>
+        </div>
+        <!-- In-Game Bereich -->
+        <div id="hlGameArea" class="hidden">
+          <div class="hl-number-container">
+            <span id="hlCurrentNumber" class="large-number">–</span>
+          </div>
+          <div class="btn-group">
+            <button id="hlHigherBtn" class="sub-btn">Higher</button>
+            <button id="hlLowerBtn"  class="sub-btn">Lower</button>
+          </div>
+          <p>Streak: <span id="hlStreak">0</span> × (<span id="hlMultiplier">0</span>×)</p>
+          <p>Payout: <span id="hlPotentialPayout">0</span> Chips</p>
+          <button id="hlCashoutBtn" class="action-btn" disabled>Cash Out</button>
+        </div>
+        <!-- Ergebnis-Bereich -->
+        <div id="hlResultArea" class="result-box hidden">
+          <p id="hlResultMessage" class="result-message"></p>
+          <div class="result-buttons">
+            <button id="hlRepeatBtn" class="sub-btn">Repeat</button>
+            <button id="hlDoubleBtn" class="sub-btn">Double</button>
+          </div>
+          <button id="hlNewBtn" class="action-btn">Play Again</button>
+        </div>
+        <button id="hlBackBtn" class="back-btn">← Back to Menu</button>
+      </div>
+    </section>
+
+    <!-- SLOT MACHINE SECTION -->
+    <section id="slotGame" class="game-section hidden">
+      <div class="game-card">
+        <h2 class="game-title">🎰 Slot Machine</h2>
+        <!-- Bet Lobby -->
+        <div id="slotLobby" class="bet-section">
+          <p>Balance: <span id="slotBalance">1000</span> Chips</p>
+          <p>Select Your Bet</p>
+          <div class="bet-options" id="slotBetOptions">
+            <button class="bet-btn" data-bet="1">1</button>
+            <button class="bet-btn" data-bet="2">2</button>
+            <button class="bet-btn" data-bet="4">4</button>
+            <button class="bet-btn" data-bet="8">8</button>
+            <button class="bet-btn" data-bet="custom">Custom</button>
+          </div>
+          <p class="selected-display">
+            Bet: <span id="slotSelectedBet">0</span> Chips
+          </p>
+          <button id="slotStartBtn" class="action-btn" disabled>Spin</button>
+          <p class="hint">🍒🍒🍒 = 5× | two matching = 2× | else lose</p>
+        </div>
+        <!-- In-Game Bereich -->
+        <div id="slotGameArea" class="hidden">
+          <div class="reels-container">
+            <div id="slotReel1" class="reel">❔</div>
+            <div id="slotReel2" class="reel">❔</div>
+            <div id="slotReel3" class="reel">❔</div>
+          </div>
+          <button id="slotSpinBtn" class="action-btn" disabled>Spin Now</button>
+        </div>
+        <!-- Ergebnis -->
+        <div id="slotResultArea" class="result-box hidden">
+          <p id="slotResultMessage" class="result-message"></p>
+          <div class="result-buttons">
+            <button id="slotRepeatBtn" class="sub-btn">Repeat</button>
+            <button id="slotDoubleBtn" class="sub-btn">Double</button>
+          </div>
+          <button id="slotNewBtn" class="action-btn">Play Again</button>
+        </div>
+        <button id="slotBackBtn" class="back-btn">← Back to Menu</button>
+      </div>
+    </section>
+
+    <!-- COIN FLIP SECTION -->
+    <section id="coinGame" class="game-section hidden">
+      <div class="game-card">
+        <h2 class="game-title">🪙 Coin Flip</h2>
+        <!-- Bet & Side -->
+        <div id="coinLobby" class="bet-section">
+          <p>Balance: <span id="coinBalance">1000</span> Chips</p>
+          <p>Select Your Bet</p>
+          <div class="bet-options" id="coinBetOptions">
+            <button class="bet-btn" data-bet="1">1</button>
+            <button class="bet-btn" data-bet="2">2</button>
+            <button class="bet-btn" data-bet="4">4</button>
+            <button class="bet-btn" data-bet="8">8</button>
+            <button class="bet-btn" data-bet="custom">Custom</button>
+          </div>
+          <p class="selected-display">
+            Bet: <span id="coinSelectedBet">0</span> Chips
+          </p>
+          <p>Select Side</p>
+          <div class="coin-side-options" id="coinSideOptions">
+            <button class="side-btn" data-side="ETH">ETH</button>
+            <button class="side-btn" data-side="SOL">SOL</button>
+          </div>
+          <button id="coinFlipBtn" class="action-btn" disabled>Flip Now</button>
+        </div>
+        <!-- In-Game Bereich -->
+        <div id="coinGameArea" class="hidden">
+          <div id="coinContainer">
+            <div id="coin" class="coin">
+              <div class="front">ETH</div>
+              <div class="back">SOL</div>
+            </div>
+          </div>
+          <div id="coinResultArea" class="result-box hidden">
+            <p id="coinResultMessage" class="result-message"></p>
+            <div class="result-buttons">
+              <button id="coinRepeatBtn" class="sub-btn">Repeat</button>
+              <button id="coinDoubleBtn" class="sub-btn">Double</button>
+            </div>
+            <button id="coinNewBtn" class="action-btn">Play Again</button>
+          </div>
+          <button id="coinBackGameBtn" class="back-btn">← Back to Menu</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Haupt‐JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,541 @@
+/* =======================
+   1) GLOBAL RESET & BASE
+   ======================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at top left, #0a0f29, #000311);
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  max-width: 450px;
+  margin: 20px auto 40px;
+  padding: 0 10px;
+}
+
+/* =======================
+   2) HEADER & BALANCE
+   ======================= */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffd700; /* Gold */
+  text-shadow: 0 3px 8px rgba(255, 215, 0, 0.6);
+  margin-bottom: 8px;
+}
+
+.balance {
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #32e0c4, #0f3460);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+/* =======================
+   3) MAIN MENU
+   ======================= */
+.menu-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-btn {
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffdd57, #ff7f50);
+  color: #0a0f29;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, #ffe680, #ff8a66);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.menu-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+}
+
+/* =======================
+   4) GAME–SECTIONS (ALLGEMEIN)
+   ======================= */
+.game-section {
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.game-card {
+  background: rgba(10, 15, 41, 0.85);
+  border-radius: 16px;
+  padding: 20px 16px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffd700;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 6px rgba(255, 215, 0, 0.5);
+}
+
+/* =======================
+   5) CONFIG-ROW (SLIDERS)
+   ======================= */
+.config-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.config-row label {
+  flex: 1 1 auto;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+.config-row input[type="range"] {
+  flex: 2 1 auto;
+  cursor: pointer;
+}
+
+.config-row span {
+  flex: 0 0 40px;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* =======================
+   6) BET-SECTION
+   ======================= */
+.bet-section {
+  background: linear-gradient(135deg, #0f3460, #08172d);
+  border: 2px solid #32e0c4;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+.bet-section p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.bet-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.bet-btn {
+  flex: 1 1 40%;
+  padding: 8px 0;
+  background: linear-gradient(135deg, #32e0c4, #0f3460);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.bet-btn:hover {
+  background: linear-gradient(135deg, #48fadb, #1f4b7b);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.bet-btn.selected {
+  background: #ffd700;
+  color: #0a0f29;
+  box-shadow: 0 0 12px rgba(255,215,0,0.7);
+}
+
+.bet-btn:disabled {
+  background: #4e4e6b;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+.selected-display {
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* =======================
+   7) ACTION BUTTONS
+   ======================= */
+.action-btn {
+  width: 100%;
+  padding: 14px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff7f50, #ffdd57);
+  color: #0a0f29;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  margin-bottom: 12px;
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, #ff9966, #ffe680);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+.action-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.action-btn:disabled {
+  background: #4e4e6b;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #a0a0a0;
+}
+
+/* =======================
+   8) BACK BUTTON
+   ======================= */
+.back-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 8px 20px;
+  font-size: 0.95rem;
+  background: #4e4e6b;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.back-btn:hover {
+  background: #6a6a8f;
+  transform: translateY(-1px);
+}
+
+.back-btn:active {
+  transform: translateY(1px);
+}
+
+/* =======================
+   9) RESULT-BOX
+   ======================= */
+.result-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 12px;
+  margin-top: 12px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.result-message {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.result-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sub-btn {
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #32e0c4, #0f3460);
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.sub-btn:hover {
+  background: linear-gradient(135deg, #48fadb, #1f4b7b);
+  transform: translateY(-1px);
+}
+
+.sub-btn:active {
+  transform: translateY(1px);
+}
+
+/* =======================
+   10) DICE SPECIFIC
+   ======================= */
+.dice-output {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.dice-container {
+  text-align: center;
+}
+
+.dice-face {
+  width: 60px;
+  height: 60px;
+  background: #0f3460;
+  color: #ffd700;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* =======================
+   11) HIGH-LOW SPECIFIC
+   ======================= */
+.large-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #32e0c4;
+  margin: 8px 0;
+}
+
+/* Centering High-Low number and buttons */
+.hl-number-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* =======================
+   12) SLOT MACHINE SPECIFIC
+   ======================= */
+.reels-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+
+.reel {
+  width: 60px;
+  height: 60px;
+  background: #0f3460;
+  color: #ffd700;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.6),
+              0 3px 8px rgba(0,0,0,0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.reel.spin {
+  animation: spinReel 0.5s ease-out;
+}
+
+@keyframes spinReel {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-120px); }
+  100% { transform: translateY(0); }
+}
+
+/* =======================
+   13) COIN FLIP SPECIFIC
+   ======================= */
+#coinContainer {
+  perspective: 1000px;
+  margin: 20px auto;
+  width: 120px;
+  height: 120px;
+}
+
+.coin {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+  transform: rotateY(0deg);
+}
+
+.coin.flip {
+  animation: flipAnim 1s ease-out;
+}
+
+@keyframes flipAnim {
+  to { transform: rotateY(1440deg); }
+}
+
+.coin .front,
+.coin .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0a0f29;
+  backface-visibility: hidden;
+  box-shadow: inset 0 4px 10px rgba(0,0,0,0.6),
+              0 4px 12px rgba(0,0,0,0.5);
+}
+
+.coin .front {
+  background: #ffd700; /* Gold */
+  transform: rotateY(0deg);
+}
+
+.coin .back {
+  background: #ffd700; /* Gold */
+  transform: rotateY(180deg);
+}
+
+.coin.show-eth {
+  transform: rotateY(0deg);
+}
+
+.coin.show-sol {
+  transform: rotateY(180deg);
+}
+
+/* =======================
+   14) COIN SIDE BUTTONS
+   ======================= */
+.coin-side-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.side-btn {
+  flex: 1 1 40%;
+  padding: 8px 0;
+  background: #32e0c4;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.side-btn:hover {
+  background: #48fadb;
+  transform: translateY(-1px);
+}
+
+.side-btn.selected {
+  background: #ffd700;
+  color: #0a0f29;
+  box-shadow: 0 0 12px rgba(255,215,0,0.7);
+}
+
+.side-btn:disabled {
+  background: #4e4e6b;
+  color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* =======================
+   15) ANIMATIONS
+   ======================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-6px); }
+  50%  { transform: translateX(6px); }
+  75%  { transform: translateX(-6px); }
+  100% { transform: translateX(0); }
+}
+
+.pop {
+  animation: pop 0.35s ease-out;
+}
+
+.shake {
+  animation: shake 0.45s ease-in-out;
+}
